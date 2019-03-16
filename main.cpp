@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "country.h"
 /*
 11231;6;Russia
 11232;1;Ukraine
@@ -61,12 +62,12 @@ void read_file(const std::string &file) {
     if (!infile) return;
 
     std::string line;
+    std::vector <Country> data;
     while ( std::getline(infile, line) ) {    
-        std::cout << line << " " << line_validator(line, ';') << '\n'; 
         if ( line.empty() || line_validator(line, ';') == false ) continue;
-        size_t id, count;
+        uint32_t id, count;
         std::string country;
-        std::string::iterator it_line;
+        
    }
 }
 
