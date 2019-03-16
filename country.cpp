@@ -4,24 +4,25 @@
 
 Country::Country(const std::string &country) {
     name = country;
+    count = 0;
 }
 
 
 void Country::insert(uint32_t count, uint32_t user) {
-    std::vector <uint32_t>::iterator usr_it;
-    for (usr_it = users.begin(); usr_it != users.end(); usr_it++) {
-        if ( *usr_it == user ) {
+    std::vector <uint32_t>::iterator it_user;
+    for (it_user = users.begin(); it_user != users.end(); it_user++) {
+        if ( *it_user == user ) {
             break;
         }
     }
-    if ( usr_it == users.end() ) {
+    if ( it_user == users.end() ) {
         users.push_back(user);
     }
     this->count += count; 
 }
 
 
-std::string Country::get_county() {
+std::string Country::get_country() {
     return this->name;
 }
 

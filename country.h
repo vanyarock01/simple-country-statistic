@@ -10,7 +10,7 @@ class Country
 {
 public:
     Country(const std::string &country);
-    ~Country();
+    ~Country() {};
     void insert(uint32_t count, uint32_t user);
     std::string get_country();
     uint32_t get_count();

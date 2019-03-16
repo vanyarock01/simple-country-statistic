@@ -63,12 +63,28 @@ void read_file(const std::string &file) {
 
     std::string line;
     std::vector <Country> data;
+    std::vector <Country>::iterator it_data;
+    
     while ( std::getline(infile, line) ) {    
         if ( line.empty() || line_validator(line, ';') == false ) continue;
-        uint32_t id, count;
-        std::string country;
         
-   }
+        std::vector <std::string> vec = split(line, ";");
+        uint32_t id = std::stoi(vec[0]);
+        uint32_t count = std::stoi(vec[1]);
+        
+        for (it_data = data.begin(); it_data != data.end(); it_data++) {
+            if ( it_data->get_country() == vec[2] ) {
+                it_data->insert(count, id);
+                break;
+            }
+        }
+        if ( it_data == data.end() ) {
+            Country c(vec[3]);
+            c.insert(count, id);
+            data.push_back(c);
+        }
+        
+    }
 }
 
 
