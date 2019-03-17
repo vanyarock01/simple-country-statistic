@@ -16,7 +16,6 @@ std::vector <std::string> split(const std::string &str, const std::string &rex) 
     for (size_t curr = 0; curr < str.length() - rex.length() + 1; curr++) {
         if ( str.substr(curr, rex.length()) == rex ) {
             if ( curr - last ) {
-                std::cout << str.length() << ' ' << last  << ' ' << curr << '\n';
                 vec.push_back(str.substr(last, curr - last));
             }
             last = curr + 1;
@@ -57,12 +56,11 @@ bool line_validator(const std::string &line, char rex) {
 }
 
 
-void read_file(const std::string &file) {
+void read_file(const std::string &file, std::vector <Country> &data) {
     std::ifstream infile(file);
     if (!infile) return;
 
     std::string line;
-    std::vector <Country> data;
     std::vector <Country>::iterator it_data;
     
     while ( std::getline(infile, line) ) {    
@@ -79,16 +77,40 @@ void read_file(const std::string &file) {
             }
         }
         if ( it_data == data.end() ) {
-            Country c(vec[3]);
+            Country c(vec[2]);
             c.insert(count, id);
             data.push_back(c);
         }
-        
     }
 }
 
 
 int main(int argc, char const *argv[]) {
-    read_file("small.txt");
+    std::vector <Country> data;
+    read_file("small.txt", data);
+    std::vector <Country>::iterator it_data;
+    for (it_data = data.begin(); it_data != data.end(); it_data++) {
+        std::cout << it_data->get_country()     << ';' << 
+                     it_data->get_count()       << ';' <<
+                     it_data->get_user_number() << '\n';
+
+    }
+        
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
