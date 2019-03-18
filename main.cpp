@@ -4,11 +4,7 @@
 #include <vector>
 #include <string>
 #include "country.h"
-/*
-11231;6;Russia
-11232;1;Ukraine
-1122;1;Ukraine
-*/
+
 
 std::vector <std::string> split(const std::string &str, const std::string &rex) {
     std::vector <std::string> vec;
@@ -82,15 +78,29 @@ void read_file(const std::string &file, std::vector <Country> &data) {
             data.push_back(c);
         }
     }
+    infile.close();
 }
 
+//    0      1      2       3       4
+//    1      2      3       4       5
+// ./prog --input <file> --output <file>
 
 int main(int argc, char const *argv[]) {
     std::vector <Country> data;
-    read_file("small.txt", data);
+    const int num_arg  = 3;
+
+    if ( argc != num_arg) {
+        std::cout << "Incorrect arguments."
+                  << "./prog <input_file> <output_file>" << '\n';
+        return 0;
+    }
+    std::string input(argv[1]), output(argv[2]);
+
+    std::ofstream outfile(output);
+    read_file(input, data);
     std::vector <Country>::iterator it_data;
     for (it_data = data.begin(); it_data != data.end(); it_data++) {
-        std::cout << it_data->get_country()     << ';' << 
+        outfile << it_data->get_country()     << ';' << 
                      it_data->get_count()       << ';' <<
                      it_data->get_user_number() << '\n';
 
