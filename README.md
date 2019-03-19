@@ -19,3 +19,10 @@ job interview solution
 
 `country;sum(count) (сумма по count);count_uniq(user_id) (число уникальных user_id для country)`
 
+## Использование
+
+В директории проекта выполнить
+
+`make`
+
+`./prog <input ile> <output file>`
